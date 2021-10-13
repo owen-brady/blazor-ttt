@@ -61,17 +61,17 @@ namespace TicTacToe.Models
             Tiles.ForEach(tile => tiles.Add(tile.Player?.Token ?? ""));
             
             // Win Conditions
-            var winConditions = new List<List<string>>
-            {
-                new() {tiles[0], tiles[1], tiles[2]},
-                new() {tiles[3], tiles[4], tiles[5]},
-                new() {tiles[6], tiles[7], tiles[8]},
-                new() {tiles[0], tiles[3], tiles[6]},
-                new() {tiles[1], tiles[4], tiles[7]},
-                new() {tiles[2], tiles[5], tiles[8]},
-                new() {tiles[0], tiles[4], tiles[8]},
-                new() {tiles[2], tiles[4], tiles[6]}
-            };
+            // ReSharper disable once UseObjectOrCollectionInitializer
+            var winConditions = new List<List<string>>();
+            winConditions.Add(new List<string> {tiles[0], tiles[1], tiles[2]});
+            winConditions.Add(new List<string> {tiles[0], tiles[1], tiles[2]});
+            winConditions.Add(new List<string> {tiles[3], tiles[4], tiles[5]});
+            winConditions.Add(new List<string> {tiles[6], tiles[7], tiles[8]});
+            winConditions.Add(new List<string> {tiles[0], tiles[3], tiles[6]});
+            winConditions.Add(new List<string> {tiles[1], tiles[4], tiles[7]});
+            winConditions.Add(new List<string> {tiles[2], tiles[5], tiles[8]});
+            winConditions.Add(new List<string> {tiles[0], tiles[4], tiles[8]});
+            winConditions.Add(new List<string> {tiles[2], tiles[4], tiles[6]});
 
             // Check Win Conditions for Player Tokens
             foreach (var condition in winConditions)
