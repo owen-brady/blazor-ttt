@@ -50,9 +50,14 @@ namespace TicTacToe.Tests.Models.Test
             game.Board.GenerateTiles();
 
             playerInputMock.GetValidTile(game.Board.Tiles).Returns(game.Board.Tiles[0]);
+
+            var tileId = playerInputMock.GetValidTile(game.Board.Tiles).Id;
             
             const Game.Status expected = Game.Status.Playing;
-            var actual = game.PlayRound(_player1, 1);
+            
+            game.PlayRound(_player1, 1, tileId);
+            
+            var actual = game.GameStatus;
             
             Assert.Equal(expected, actual);
         }
@@ -66,7 +71,9 @@ namespace TicTacToe.Tests.Models.Test
 
             playerInputMock.GetValidTile(game.Board.Tiles).Returns(game.Board.Tiles[0]);
 
-            game.PlayRound(_player1, 1);
+            var tileId = playerInputMock.GetValidTile(game.Board.Tiles).Id;
+
+            game.PlayRound(_player1, 1, tileId);
 
             game.Board.Tiles[0].Player.Should().BeEquivalentTo(_player1);
             game.Board.Tiles[0].Move.Should().NotBeNull();
@@ -81,7 +88,9 @@ namespace TicTacToe.Tests.Models.Test
 
             playerInputMock.GetValidTile(game.Board.Tiles).Returns(game.Board.Tiles[0]);
 
-            game.PlayRound(_player1, 1);
+            var tileId = playerInputMock.GetValidTile(game.Board.Tiles).Id;
+
+            game.PlayRound(_player1, 1, tileId);
 
             game.Board.Tiles.RemoveAt(0);
             
@@ -110,7 +119,12 @@ namespace TicTacToe.Tests.Models.Test
             playerInputMock.GetValidTile(game.Board.Tiles).Returns(game.Board.Tiles[2]);
 
             const Game.Status expected = Game.Status.Winner;
-            var actual = game.PlayRound(_player1, 3);
+
+            var tileId = playerInputMock.GetValidTile(game.Board.Tiles).Id;
+            
+            game.PlayRound(_player1, 3, tileId);
+
+            var actual = game.GameStatus;
             
             Assert.Equal(expected, actual);
         }
@@ -148,9 +162,14 @@ namespace TicTacToe.Tests.Models.Test
             game.Board.Tiles[7].Move = new Move(8, _player2.Id, 7);
             
             playerInputMock.GetValidTile(game.Board.Tiles).Returns(game.Board.Tiles[8]);
+
+            var tileId = playerInputMock.GetValidTile(game.Board.Tiles).Id;
             
             const Game.Status expected = Game.Status.Tie;
-            var actual = game.PlayRound(_player1, 9);
+            
+            game.PlayRound(_player1, 9, tileId);
+
+            var actual = game.GameStatus;
             
             Assert.Equal(expected, actual);
         }
