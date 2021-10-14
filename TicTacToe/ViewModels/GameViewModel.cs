@@ -9,7 +9,8 @@ namespace TicTacToe.ViewModels
         public Game Game;
         public readonly Player Player1;
         public readonly Player Player2;
-        
+        public Player? Winner { get; set; }
+        public bool Tie { get; set; } = false;
 
         public GameViewModel(Player player1, Player player2, Game? game = null)
         {
@@ -20,27 +21,24 @@ namespace TicTacToe.ViewModels
             Game = Game.StartNewGame(Player1, Player2);
         }
 
-        public void PlayGame()
+        public void PlayGame(int tileId)
         {
-            while (Game.GameStatus == Game.Status.Playing)
+            Game.PlayRound(Game.IsPlayerOneTurn ? Player1 : Player2, Game.RoundNumber, tileId);
+            Game.RoundNumber++;
+                
+            switch (Game.GameStatus)
             {
-                // TODO: re-implement
-                // Game.Board.DrawBoard();
-                Game.GameStatus = Game.PlayRound(Game.IsPlayerOneTurn ? Player1 : Player2, Game.RoundNumber);
-                Game.RoundNumber++;
-                if (Game.GameStatus == Game.Status.Playing) Game.IsPlayerOneTurn = !Game.IsPlayerOneTurn; // only change when another round will be played
-            }
-
-            if (Game.GameStatus == Game.Status.Winner)
-            {
-                var winner = Game.IsPlayerOneTurn ? Player1 : Player2;
-                // TODO: convert to future solution
-                Console.WriteLine($"Winner: {winner.Name}");
-            }
-            else
-            {
-                // TODO: convert to future solution
-                Console.WriteLine("Tie Game");
+                case Game.Status.Playing:
+                    Game.IsPlayerOneTurn = !Game.IsPlayerOneTurn; // only change when another round will be played
+                    break;
+                case Game.Status.Winner:
+                    Winner = Game.IsPlayerOneTurn ? Player1 : Player2;
+                    break;
+                case Game.Status.Tie:
+                    Tie = true;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
     }

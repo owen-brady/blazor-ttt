@@ -41,10 +41,11 @@ namespace TicTacToe.Models
             return game;
         }
 
-        public Status PlayRound(Player player, int moveNumber)
+        public void PlayRound(Player player, int moveNumber, int tileId)
         {
             // User selects tile
-            var tile = _playerInput.GetValidTile(Board.Tiles);
+            // var tile = _playerInput.GetValidTile(Board.Tiles);
+            var tile = Board.Tiles[tileId];
             
             // Tile is played
             var move = new Move(moveNumber, player.Id, tile.Id);
@@ -55,17 +56,15 @@ namespace TicTacToe.Models
             var isWinner = Board.CheckForWin();
             if (isWinner)
             {
-                return Status.Winner;
+                GameStatus = Status.Winner;
             }
             
             // Check for tie
             var isTie = Board.CheckForTie();
             if (isTie)
             {
-                return Status.Tie;
+                GameStatus = Status.Tie;
             }
-            
-            return Status.Playing;
         }
     }
 }
