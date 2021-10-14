@@ -17,7 +17,8 @@ namespace TicTacToe.Models
         public bool IsPlayerOneTurn { get; set; } = true;
         public int RoundNumber { get; set; } = 1;
         public Status GameStatus { get; set; } = Status.Playing;
-        
+        public Player ActivePlayer => IsPlayerOneTurn ? Player1 : Player2;
+
         public Game(Player player1, Player player2, IPlayerInput playerInput, Board? board = null)
         {
             Player1 = player1;
