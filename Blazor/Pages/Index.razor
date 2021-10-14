@@ -12,26 +12,26 @@
 
 <h1>Let's play a game!</h1>
 
-<button @onclick="_gameViewModel.PlayGame">Start</button>
+<h3>@_gameViewModel.Game.ActivePlayer.Name - please select tile</h3>
 
-<p>@_gameViewModel.Game.ActivePlayer.Name</p>
+<h1>Winner: @_gameViewModel.Winner?.Name</h1>
 
 <div id="board">
     <table>
         <tr id="row1">
-            <td class="square">@_gameViewModel.Game.Board.Tiles[0].Player?.Token</td>
-            <td class="square v">@_gameViewModel.Game.Board.Tiles[1].Player?.Token</td>
-            <td class="square">@_gameViewModel.Game.Board.Tiles[2].Player?.Token</td>
+            <td class="square" @onclick="() => _gameViewModel.PlayGame(0)">@_gameViewModel.Game.Board.Tiles[0].Player?.Token</td>
+            <td class="square v" @onclick="() => _gameViewModel.PlayGame(1)">@_gameViewModel.Game.Board.Tiles[1].Player?.Token</td>
+            <td class="square" @onclick="() => _gameViewModel.PlayGame(2)">@_gameViewModel.Game.Board.Tiles[2].Player?.Token</td>
         </tr>
         <tr id="row2">
-            <td class="square h">@_gameViewModel.Game.Board.Tiles[3].Player?.Token</td>
-            <td class="square v h">@_gameViewModel.Game.Board.Tiles[4].Player?.Token</td>
-            <td class="square h">@_gameViewModel.Game.Board.Tiles[5].Player?.Token</td>
+            <td class="square h" @onclick="() => _gameViewModel.PlayGame(3)">@_gameViewModel.Game.Board.Tiles[3].Player?.Token</td>
+            <td class="square v h" @onclick="() => _gameViewModel.PlayGame(4)">@_gameViewModel.Game.Board.Tiles[4].Player?.Token</td>
+            <td class="square h" @onclick="() => _gameViewModel.PlayGame(5)">@_gameViewModel.Game.Board.Tiles[5].Player?.Token</td>
         </tr>
         <tr id="row3">
-            <td class="square">@_gameViewModel.Game.Board.Tiles[6].Player?.Token</td>
-            <td class="square v">@_gameViewModel.Game.Board.Tiles[7].Player?.Token</td>
-            <td class="square">@_gameViewModel.Game.Board.Tiles[8].Player?.Token</td>
+            <td class="square" @onclick="() => _gameViewModel.PlayGame(6)">@_gameViewModel.Game.Board.Tiles[6].Player?.Token</td>
+            <td class="square v" @onclick="() => _gameViewModel.PlayGame(7)">@_gameViewModel.Game.Board.Tiles[7].Player?.Token</td>
+            <td class="square" @onclick="() => _gameViewModel.PlayGame(8)">@_gameViewModel.Game.Board.Tiles[8].Player?.Token</td>
         </tr>
     </table>
 </div>
