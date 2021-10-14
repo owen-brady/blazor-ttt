@@ -12,22 +12,43 @@
 
 <h1>Let's play a game!</h1>
 
-<p>@_gameViewModel.Player1.Name</p>
+<button @onclick="_gameViewModel.PlayGame">Start</button>
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm">0</div>
-        <div class="col-sm">1</div>
-        <div class="col-sm">2</div>
-    </div>
-    <div class="row">
-        <div class="col-sm">3</div>
-        <div class="col-sm">4</div>
-        <div class="col-sm">5</div>
-    </div>
-    <div class="row">
-        <div class="col-sm">6</div>
-        <div class="col-sm">7</div>
-        <div class="col-sm">8</div>
-    </div>
+<p>@_gameViewModel.Game.ActivePlayer.Name</p>
+
+<div id="board">
+    <table>
+        <tr id="row1">
+            <td class="square">@_gameViewModel.Game.Board.Tiles[0].Player?.Token</td>
+            <td class="square v">@_gameViewModel.Game.Board.Tiles[1].Player?.Token</td>
+            <td class="square">@_gameViewModel.Game.Board.Tiles[2].Player?.Token</td>
+        </tr>
+        <tr id="row2">
+            <td class="square h">@_gameViewModel.Game.Board.Tiles[3].Player?.Token</td>
+            <td class="square v h">@_gameViewModel.Game.Board.Tiles[4].Player?.Token</td>
+            <td class="square h">@_gameViewModel.Game.Board.Tiles[5].Player?.Token</td>
+        </tr>
+        <tr id="row3">
+            <td class="square">@_gameViewModel.Game.Board.Tiles[6].Player?.Token</td>
+            <td class="square v">@_gameViewModel.Game.Board.Tiles[7].Player?.Token</td>
+            <td class="square">@_gameViewModel.Game.Board.Tiles[8].Player?.Token</td>
+        </tr>
+    </table>
 </div>
+
+<style>
+    .square{
+            width:200px;
+            height:200px;
+        }
+    
+        .v{
+            border-left:1px solid #000;
+            border-right:1px solid #000;
+        }
+    
+        .h{
+            border-top:1px solid #000;
+            border-bottom:1px solid #000;
+        }
+</style>
