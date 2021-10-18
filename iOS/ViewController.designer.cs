@@ -20,7 +20,7 @@ namespace iOS
 		UIKit.UILabel TieLabel { get; set; }
 
 		[Outlet]
-		UIKit.UILabel[] TileCollection { get; set; }
+		UIKit.UIButton[] TileButtons { get; set; }
 
 		[Outlet]
 		UIKit.UILabel TurnIndicatorLabel { get; set; }
@@ -35,6 +35,11 @@ namespace iOS
 				LetsPlayLabel = null;
 			}
 
+			if (TieLabel != null) {
+				TieLabel.Dispose ();
+				TieLabel = null;
+			}
+
 			if (TurnIndicatorLabel != null) {
 				TurnIndicatorLabel.Dispose ();
 				TurnIndicatorLabel = null;
@@ -43,11 +48,6 @@ namespace iOS
 			if (WinnerLabel != null) {
 				WinnerLabel.Dispose ();
 				WinnerLabel = null;
-			}
-
-			if (TieLabel != null) {
-				TieLabel.Dispose ();
-				TieLabel = null;
 			}
 
 		}
