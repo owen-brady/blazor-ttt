@@ -59,7 +59,7 @@ namespace iOS
             
             // Set Label Text
             TurnIndicatorLabel.Text = $"{_gameViewModel.Game.ActivePlayer.Name}: please select tile";
-            WinnerLabel.Text = $"Winner: ${_gameViewModel.Winner?.Name}";
+            WinnerLabel.Text = $"Winner: {_gameViewModel.Winner?.Name}";
             TieLabel.Text = "Tie Game!";
             
             // Buttons
