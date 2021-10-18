@@ -6,15 +6,17 @@
 {
     static readonly Player Player1 = new Player(1, Player.PlayerType.Human, "Player 1", "X");
     static readonly Player Player2 = new Player(2, Player.PlayerType.Human, "Player 2", "O");
-    
-    GameViewModel _gameViewModel = new GameViewModel(Player1, Player2);
+
+    readonly GameViewModel _gameViewModel = new GameViewModel(Player1, Player2);
 }
 
-<h1>Let's play a game!</h1>
+<h1 hidden="@_gameViewModel.GameFinished">Let's play a game!</h1>
 
-<h3>@_gameViewModel.Game.ActivePlayer.Name - please select tile</h3>
+<h3 hidden="@_gameViewModel.GameFinished">@_gameViewModel.Game.ActivePlayer.Name - please select tile</h3>
 
-<h1>Winner: @_gameViewModel.Winner?.Name</h1>
+<h1 hidden="@_gameViewModel.HasWinner.Equals(false)">Winner: @_gameViewModel.Winner?.Name</h1>
+
+<h1 hidden="@_gameViewModel.IsTie.Equals(false)">Tie Game!</h1>
 
 <div id="board">
     <table>

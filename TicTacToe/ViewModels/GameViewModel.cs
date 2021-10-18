@@ -6,11 +6,13 @@ namespace TicTacToe.ViewModels
 {
     public class GameViewModel
     {
-        public Game Game;
+        public readonly Game Game;
         public readonly Player Player1;
         public readonly Player Player2;
         public Player? Winner { get; set; }
-        public bool Tie { get; set; } = false;
+        public bool IsTie { get; set; }
+        public bool HasWinner { get; set; }
+        public bool GameFinished => HasWinner || IsTie;
 
         public GameViewModel(Player player1, Player player2, Game? game = null)
         {
@@ -23,6 +25,11 @@ namespace TicTacToe.ViewModels
 
         public void PlayGame(int tileId)
         {
+            if (HasWinner || IsTie)
+            {
+                return;
+            }
+            
             Game.PlayRound(Game.IsPlayerOneTurn ? Player1 : Player2, Game.RoundNumber, tileId);
             Game.RoundNumber++;
                 
@@ -33,9 +40,10 @@ namespace TicTacToe.ViewModels
                     break;
                 case Game.Status.Winner:
                     Winner = Game.IsPlayerOneTurn ? Player1 : Player2;
+                    HasWinner = true;
                     break;
                 case Game.Status.Tie:
-                    Tie = true;
+                    IsTie = true;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
