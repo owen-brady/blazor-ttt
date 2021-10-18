@@ -14,10 +14,42 @@ namespace iOS
 	partial class ViewController
 	{
 		[Outlet]
+		UIKit.UILabel LetsPlayLabel { get; set; }
+
+		[Outlet]
+		UIKit.UILabel TieLabel { get; set; }
+
+		[Outlet]
 		UIKit.UILabel[] TileCollection { get; set; }
+
+		[Outlet]
+		UIKit.UILabel TurnIndicatorLabel { get; set; }
+
+		[Outlet]
+		UIKit.UILabel WinnerLabel { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
+			if (LetsPlayLabel != null) {
+				LetsPlayLabel.Dispose ();
+				LetsPlayLabel = null;
+			}
+
+			if (TurnIndicatorLabel != null) {
+				TurnIndicatorLabel.Dispose ();
+				TurnIndicatorLabel = null;
+			}
+
+			if (WinnerLabel != null) {
+				WinnerLabel.Dispose ();
+				WinnerLabel = null;
+			}
+
+			if (TieLabel != null) {
+				TieLabel.Dispose ();
+				TieLabel = null;
+			}
+
 		}
 	}
 }
