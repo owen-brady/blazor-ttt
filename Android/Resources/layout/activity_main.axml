@@ -5,11 +5,179 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World"
-        android:textSize="34sp"
-        tools:text="Hello World" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#FFFFFF">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50px" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="0dp"
+            android:text="Let's play a game!"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/turnIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="0dp"
+            android:text="Player X: please select a tile"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="100px" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#000000"
+            android:paddingTop="0pt">
+            
+            <Button
+                android:id="@+id/tile0"
+                android:text="0"
+                android:background="#FFFFFF"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="60sp"/>
+
+            <Button
+                android:id="@+id/tile1"
+                android:text="1"
+                android:background="#FFFFFF"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="1pt"
+                android:layout_marginRight="1pt"
+                android:textSize="60sp"/>
+
+            <Button
+                android:id="@+id/tile2"
+                android:text="2"
+
+                android:background="#FFFFFF"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="60sp"/>
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#000000">
+
+            <Button
+                android:id="@+id/tile3"
+                android:text="3"
+                android:background="#FFFFFF"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginTop="1pt"
+                android:layout_marginBottom="1pt"
+                android:textSize="60sp"/>
+
+            <Button
+                android:id="@+id/tile4"
+                android:text="4"
+                android:background="#FFFFFF"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="1pt"
+                android:layout_marginRight="1pt"
+                android:layout_marginTop="1pt"
+                android:layout_marginBottom="1pt"
+                android:textSize="60sp"/>
+
+            <Button
+                android:id="@+id/tile5"
+                android:text="5"
+                android:background="#FFFFFF"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginTop="1pt"
+                android:layout_marginBottom="1pt"
+                android:textSize="60sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#000000">
+
+            <Button
+                android:id="@+id/tile6"
+                android:text="6"
+                android:background="#FFFFFF"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="60sp" />
+
+            <Button
+                android:id="@+id/tile7"
+                android:text="7"
+                android:background="#FFFFFF"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="1pt"
+                android:layout_marginRight="1pt"
+                android:textSize="60sp"/>
+
+            <Button
+                android:id="@+id/tile8"
+                android:text="8"
+                android:background="#FFFFFF"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="60sp"/>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+    </LinearLayout>
+
 </RelativeLayout>
