@@ -90,10 +90,5 @@ namespace TicTacToe.Models
 
             return false;
         }
-
-        public void DrawBoard()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

@@ -9,36 +9,19 @@ namespace TicTacToe.Services
 {
     public class RobotMove
     {
-        public int SelectTile(Board gameBoard)
+        public int SelectTile(Board gameBoard, Player player, Player opponent)
         {
-            int tileToReturn;
             if (gameBoard.Tiles.Count(tile => tile.Player != null) == 0)
             {
-                tileToReturn = MakeOpeningMove();
+                return MakeOpeningMove();
             }
-            else if (gameBoard.Tiles.Count(tile => tile.Player != null) == 1)
-            {
-                tileToReturn = MakeSecondMove(gameBoard);
-            }
-            else 
-            {
-                tileToReturn = 0;
-            }
-             
-            return tileToReturn;
+            
+            return FindBestMove(gameBoard, player, opponent);
         }
 
         private int MakeOpeningMove()
         {
             return RandomCorner();
-        }
-        
-        private int MakeSecondMove(Board board)
-        {
-            // Without Google, deciding to prefer selecting the center tile unless that is the first move
-            // in which case a corner tile is selected. Not optimal for winning but should be able to force draws.
-
-            return board.Tiles[4].Player == null ? 4 : RandomCorner();
         }
 
         private int RandomCorner()
@@ -56,82 +39,6 @@ namespace TicTacToe.Services
             };
 
             return tileId;
-        }
-
-        public int BestMove(GameViewModel gameViewModel)
-        {
-            var availableTiles = gameViewModel.Game.Board.Tiles.Where(tile => tile.Player == null).Select(tile => tile.Id);
-            var tileIds = availableTiles as int[] ?? availableTiles.ToArray();
-
-            // Check for winning move
-            for (var i = 0; i < tileIds.Count(); i++)
-            {
-                // TODO: discuss levels of dependency, best option for this type of situation
-                var winningMove = WinningMove(gameViewModel.Game.ActivePlayer, gameViewModel.Game.Board, tileIds[i]);
-
-                if (winningMove)
-                {
-                    return tileIds[i];
-                }
-            }
-            
-            // Check for saving move
-            // Search for winning move of the opposing player
-            var opposingPlayer = gameViewModel.Game.ActivePlayer == gameViewModel.Player1
-                ? gameViewModel.Player2
-                : gameViewModel.Player1;
-            for (var i = 0; i < tileIds.Count(); i++)
-            {
-                var savingMove = WinningMove(opposingPlayer, gameViewModel.Game.Board, tileIds[i]);
-
-                if (savingMove)
-                {
-                    return tileIds[i];
-                }
-            }
-
-            return 123456789;
-            // return availableTileIds.First();
-        }
-
-        // Used in recursive function to return move resulting in win or draw (best case)
-        private bool WinningMove(Player player, Board gameBoard, int move)
-        {
-            // Check for Win
-            int[,] winConditions = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};
-
-            var tiles = gameBoard.Tiles.Where(tile => tile.Player == player).Select(tile => tile.Id);
-            var tileList = tiles.ToList();
-            tileList.Add(move);
-
-            for (var i = 0; i < winConditions.GetUpperBound(0); i++)
-            {
-                var winningMove = tileList.Contains(winConditions[i, 0]) && tileList.Contains(winConditions[i, 1]) &&
-                                tileList.Contains(winConditions[i, 2]);
-
-                if (winningMove)
-                {
-                    return true;
-                }
-            }
-            
-            return false;
-        }
-
-        private int EvaluateBoard(GameViewModel gameViewModel)
-        {
-            var player = gameViewModel.Game.ActivePlayer;
-            var opponent = gameViewModel.Game.ActivePlayer == gameViewModel.Player1
-                ? gameViewModel.Player2
-                : gameViewModel.Player1;
-            var board = gameViewModel.Game.Board;
-            
-            int[,] winConditions = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};
-            
-            var playedTiles = gameViewModel.Game.Board.Tiles.Where(tile => tile.Player == player).Select(tile => tile.Id).ToList();
-            var remainingTiles = gameViewModel.Game.Board.Tiles.Where(tile => tile.Player == null).Select(tile => tile.Id).ToList();
-
-            return 0;
         }
         
         // Method to score board state (+10 for win, -10 for loss)
@@ -232,7 +139,7 @@ namespace TicTacToe.Services
         }
         
         // Method for finding best move that loops through each possible move and calls minimax
-        public int FindBestMove(Board board, Player player, Player opponent)
+        private int FindBestMove(Board board, Player player, Player opponent)
         {
             var availableTiles = board.Tiles.Where(tile => tile.Player == null).Select(tile => tile.Id).ToList();
 
