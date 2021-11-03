@@ -1,6 +1,7 @@
 #nullable enable
 using System;
 using TicTacToe.Models;
+using TicTacToe.Services;
 
 namespace TicTacToe.ViewModels
 {
@@ -48,6 +49,21 @@ namespace TicTacToe.ViewModels
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
+            if (Game.ActivePlayer.Type == Player.PlayerType.Robot)
+            {
+                PlayGame(MakeRobotMove());
+            }
+        }
+
+        private readonly RobotMove _robotMove = new RobotMove();
+        private int MakeRobotMove()
+        {
+            var player = Game.ActivePlayer;
+            var opponent = player == Player1 ? Player2 : Player1;
+            var tileId = _robotMove.SelectTile(Game.Board, player, opponent);
+
+            return tileId;
         }
     }
 }
