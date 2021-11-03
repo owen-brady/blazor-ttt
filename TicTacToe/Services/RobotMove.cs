@@ -11,36 +11,9 @@ namespace TicTacToe.Services
     {
         public int SelectTile(Board gameBoard, Player player, Player opponent)
         {
-            if (gameBoard.Tiles.Count(tile => tile.Player != null) == 0)
-            {
-                return MakeOpeningMove();
-            }
-            
             return FindBestMove(gameBoard, player, opponent);
         }
 
-        private int MakeOpeningMove()
-        {
-            return RandomCorner();
-        }
-
-        private int RandomCorner()
-        {
-            var randomGenerator = new Random();
-            var tile = randomGenerator.Next(1, 4);
-
-            var tileId = tile switch
-            {
-                1 => 0,
-                2 => 2,
-                3 => 6,
-                4 => 8,
-                _ => 0
-            };
-
-            return tileId;
-        }
-        
         // Method to score board state (+10 for win, -10 for loss)
         public static int EvaluateBoard(Board board, Player player, Player opponent)
         {
@@ -67,7 +40,7 @@ namespace TicTacToe.Services
         {
             int[,] winConditions = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};
             
-            for (var i = 0; i < winConditions.GetUpperBound(0); i++)
+            for (var i = 0; i < 8; i++)
             {
                 var winningMove = tiles.Contains(winConditions[i, 0]) && tiles.Contains(winConditions[i, 1]) &&
                                   tiles.Contains(winConditions[i, 2]);
@@ -112,7 +85,7 @@ namespace TicTacToe.Services
                     board.Tiles[availableTiles[i]].Player = player;
                     
                     // Recursively call Minimax
-                    best = Math.Max(best, Minimax(board, player, opponent, depth + 1, !isMax));
+                    best = Math.Max(best, Minimax(board, player, opponent, depth++, false));
 
                     board.Tiles[availableTiles[i]].Player = null;
                 }
@@ -129,7 +102,8 @@ namespace TicTacToe.Services
                     board.Tiles[availableTiles[i]].Player = opponent;
                     
                     // Recursively call Minimax
-                    best = Math.Min(best, Minimax(board, player, opponent, depth + 1, !isMax));
+                    isMax = !isMax;
+                    best = Math.Min(best, Minimax(board, player, opponent, depth++, true));
 
                     board.Tiles[availableTiles[i]].Player = null;
                 }

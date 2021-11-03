@@ -15,16 +15,6 @@ namespace TicTacToe.Tests.Services.Test
         private readonly GameViewModel _gameViewModel = new (Player1, Player2);
         
         [Fact]
-        public void OpeningMove_ExpectCornerTileSelected()
-        {
-            var selectedTile = _robotMove.SelectTile(_gameViewModel.Game.Board, Player1, Player2);
-
-            var expected = new[] { 0, 2, 6, 8 };
-
-            expected.Should().Contain(selectedTile);
-        }
-
-        [Fact]
         public void EvaluateBoard_ReturnsExpectedScore_NoWinCondition()
         {
             const int expectedScore = 0;
@@ -110,6 +100,23 @@ namespace TicTacToe.Tests.Services.Test
             var actualMove = _robotMove.SelectTile(_gameViewModel.Game.Board, player, opponent);
 
             expectedMove.Should().Contain(actualMove);
+        }
+
+        [Fact]
+        public void FindBestMove_WeirdEdgeCaseIDontUnderstandButMightBeRelatedToDepth()
+        {
+            _gameViewModel.Game.Board.Tiles[4].Player = Player1;
+            _gameViewModel.Game.Board.Tiles[0].Player = Player2;
+            _gameViewModel.Game.Board.Tiles[2].Player = Player1;
+            
+            var player = Player2;
+            var opponent = Player1;
+
+            const int expectedMove = 6;
+            
+            var actualMove = _robotMove.SelectTile(_gameViewModel.Game.Board, player, opponent);
+
+            actualMove.Should().Be(expectedMove);
         }
     }
 }
