@@ -40,7 +40,7 @@ namespace TicTacToe.Services
         {
             int[,] winConditions = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};
             
-            for (var i = 0; i < 8; i++)
+            for (var i = 0; i <= winConditions.GetUpperBound(0); i++)
             {
                 var winningMove = tiles.Contains(winConditions[i, 0]) && tiles.Contains(winConditions[i, 1]) &&
                                   tiles.Contains(winConditions[i, 2]);
