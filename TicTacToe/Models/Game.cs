@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using TicTacToe.Services;
+using TicTacToe.ViewModels;
 
 namespace TicTacToe.Models
 {
@@ -65,6 +66,26 @@ namespace TicTacToe.Models
             {
                 GameStatus = Status.Tie;
             }
+        }
+
+        public static GameViewModel PlayHuman()
+        {
+            var player1 = new Player(1, Player.PlayerType.Human, "Player 1", "X");
+            var player2 = new Player(2, Player.PlayerType.Human, "Player 2", "O");
+
+            GameViewModel gameViewModel = new GameViewModel(player1, player2);
+
+            return gameViewModel;
+        }
+
+        public static GameViewModel PlayRobot()
+        {
+            var player1 = new Player(1, Player.PlayerType.Human, "Player 1", "X");
+            var player2 = new Player(2, Player.PlayerType.Robot, "Player 2", "O");
+
+            GameViewModel gameViewModel = new GameViewModel(player1, player2);
+
+            return gameViewModel;
         }
     }
 }

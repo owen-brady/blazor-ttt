@@ -173,5 +173,21 @@ namespace TicTacToe.Tests.Models.Test
             
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void NewGame_PlayHuman_ReturnsHumanOpponent()
+        {
+            var gameViewModel = Game.PlayHuman();
+
+            Assert.Equal(Player.PlayerType.Human, gameViewModel.Player2.Type);
+        }
+
+        [Fact]
+        public void NewGame_PlayRobot_ReturnRobotOpponent()
+        {
+            var gameViewModel = Game.PlayRobot();
+            
+            Assert.Equal(Player.PlayerType.Robot, gameViewModel.Player2.Type);
+        }
     }
 }
