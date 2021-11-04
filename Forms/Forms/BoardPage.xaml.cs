@@ -20,22 +20,33 @@ namespace Forms
         {
             GameViewModel = gameViewModel;
             BindingContext = GameViewModel;
+            
+            InitializeComponent();
+            
+            Board.RowDefinitions = SetRowDefinitions();
+            Board.ColumnDefinitions = SetColumnDefinitions();
+        }
+
+        private static RowDefinitionCollection SetRowDefinitions()
+        {
             var rowDefinitionCollection = new RowDefinitionCollection();
             var rowDefinition = new RowDefinition {Height = GridSize()};
             rowDefinitionCollection.Add(rowDefinition);
             rowDefinitionCollection.Add(rowDefinition);
             rowDefinitionCollection.Add(rowDefinition);
 
+            return rowDefinitionCollection;
+        }
+        
+        private static ColumnDefinitionCollection SetColumnDefinitions()
+        {
             var columnDefinitionCollection = new ColumnDefinitionCollection();
             var columnDefinition = new ColumnDefinition {Width = GridSize()};
             columnDefinitionCollection.Add(columnDefinition);
             columnDefinitionCollection.Add(columnDefinition);
             columnDefinitionCollection.Add(columnDefinition);
-            
-            InitializeComponent();
-            
-            Board.RowDefinitions = rowDefinitionCollection;
-            Board.ColumnDefinitions = columnDefinitionCollection;
+
+            return columnDefinitionCollection;
         }
 
         private static double GridSize()
