@@ -12,7 +12,8 @@ namespace Forms
         {
             // InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new StartPage());
+            // MainPage = new AppShell();
         }
 
         protected override void OnStart()

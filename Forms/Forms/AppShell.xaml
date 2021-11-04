@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:forms="clr-namespace:Forms;assembly=Forms"
+       x:Class="Forms.AppShell"
+       NavBarIsVisible="False"
+       BackgroundColor="White"
+       FlyoutBehavior="Disabled">
+
+       <ShellContent ContentTemplate="{DataTemplate forms:StartPage}" Route="{x:Static forms:AppRoutes.StartPage}"/>
+       <ShellContent ContentTemplate="{DataTemplate forms:BoardPage}" Route="{x:Static forms:AppRoutes.BoardPage}"/>
+</Shell>
