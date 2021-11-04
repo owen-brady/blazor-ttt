@@ -2,10 +2,21 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:TicTacToe.ViewModels;assembly=TicTacToe"
+             xmlns:converters="clr-namespace:Forms.Assets.Converters;assembly=Forms"
              x:Class="Forms.BoardPage"
-             BackgroundColor="White">
+             BackgroundColor="White" x:DataType="viewModels:GameViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BoolConverter x:Key="BoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <StackLayout VerticalOptions="Center">
-        <Label Text="Winner: Player X" />
+        <Label Text="Let's play a game!" IsVisible="{Binding GameFinished, Converter={StaticResource BoolConverter}}"/>
+        <Label Text="Player X - please select tile" IsVisible="{Binding GameFinished, Converter={StaticResource BoolConverter}}"/>
+        <Label Text="Winner: Player X!" IsVisible="{Binding HasWinner}"/>
+        <Label Text="Tie Game!" IsVisible="{Binding IsTie}"/>
         <Grid
             x:Name="Board"
             IsVisible="True"
@@ -26,7 +37,6 @@
             <Button Grid.Row="2" Grid.Column="2" BackgroundColor="LightGray" />
         </Grid>
         
-        <!-- TODO: hide until game is over -->
-        <Button Text="New Game" IsVisible="False"/>
+        <Button Text="New Game" IsVisible="{Binding GameFinished}"/>
     </StackLayout>
 </ContentPage>

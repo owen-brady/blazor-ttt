@@ -16,4 +16,15 @@
     <ItemGroup>
       <ProjectReference Include="..\..\TicTacToe\TicTacToe.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Views\BoardPage.xaml.cs">
+        <DependentUpon>BoardPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\StartPage.xaml.cs">
+        <DependentUpon>StartPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
 </Project>
