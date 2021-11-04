@@ -10,6 +10,7 @@ namespace TicTacToe.ViewModels
         public readonly Game Game;
         public readonly Player Player1;
         public readonly Player Player2;
+        public Player ActivePlayer { get; set; }
         public Player? Winner { get; set; }
         public bool IsTie { get; set; }
         public bool HasWinner { get; set; }
@@ -20,7 +21,9 @@ namespace TicTacToe.ViewModels
             // TODO: add ability to input custom player data
             Player1 = player1;
             Player2 = player2;
+
             // TODO: initialize new game only if game session is null
+            ActivePlayer = player1;
             Game = Game.StartNewGame(Player1, Player2);
         }
 
@@ -33,7 +36,7 @@ namespace TicTacToe.ViewModels
             
             Game.PlayRound(Game.IsPlayerOneTurn ? Player1 : Player2, Game.RoundNumber, tileId);
             Game.RoundNumber++;
-                
+
             switch (Game.GameStatus)
             {
                 case Game.Status.Playing:
@@ -54,6 +57,8 @@ namespace TicTacToe.ViewModels
             {
                 PlayGame(MakeRobotMove());
             }
+
+            ActivePlayer = Game.ActivePlayer;
         }
 
         private readonly RobotMove _robotMove = new RobotMove();
