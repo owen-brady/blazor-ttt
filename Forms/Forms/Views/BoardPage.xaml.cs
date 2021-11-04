@@ -53,5 +53,12 @@ namespace Forms
         {
             return (Application.Current.MainPage.Width - 50) / 3;
         }
+
+        private void Tile_OnClicked(object sender, EventArgs e)
+        {
+            var idParameter = (sender as Button)?.CommandParameter;
+            var tileId = int.Parse(idParameter as string ?? "");
+            GameViewModel.PlayGame(tileId);
+        }
     }
 }

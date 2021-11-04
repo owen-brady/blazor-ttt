@@ -1,7 +1,10 @@
+using System.ComponentModel;
+
 namespace TicTacToe.Models
 {
-    public class Player
+    public class Player : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         public int Id { get; }
         public PlayerType Type { get; }
         public string Name { get; }

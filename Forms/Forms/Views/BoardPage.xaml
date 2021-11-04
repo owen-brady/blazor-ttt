@@ -14,8 +14,8 @@
     
     <StackLayout VerticalOptions="Center">
         <Label Text="Let's play a game!" IsVisible="{Binding GameFinished, Converter={StaticResource BoolConverter}}"/>
-        <Label Text="Player X - please select tile" IsVisible="{Binding GameFinished, Converter={StaticResource BoolConverter}}"/>
-        <Label Text="Winner: Player X!" IsVisible="{Binding HasWinner}"/>
+        <Label Text="{Binding Path=ActivePlayer.Name, StringFormat='{0} - please select tile'}" IsVisible="{Binding GameFinished, Converter={StaticResource BoolConverter}}"/>
+        <Label Text="{Binding Path=Winner.Name, FallbackValue='', StringFormat='Winner - {0}!'}" IsVisible="{Binding HasWinner}"/>
         <Label Text="Tie Game!" IsVisible="{Binding IsTie}"/>
         <Grid
             x:Name="Board"
@@ -26,15 +26,15 @@
             RowDefinitions="*, *, *"
             ColumnDefinitions="*, *, *">
             <!-- Tiles -->
-            <Button Grid.Row="0" Grid.Column="0" BackgroundColor="LightGray" />
-            <Button Grid.Row="0" Grid.Column="1" BackgroundColor="LightGray" />
-            <Button Grid.Row="0" Grid.Column="2" BackgroundColor="LightGray" />
-            <Button Grid.Row="1" Grid.Column="0" BackgroundColor="LightGray" />
-            <Button Grid.Row="1" Grid.Column="1" BackgroundColor="LightGray" />
-            <Button Grid.Row="1" Grid.Column="2" BackgroundColor="LightGray" />
-            <Button Grid.Row="2" Grid.Column="0" BackgroundColor="LightGray" />
-            <Button Grid.Row="2" Grid.Column="1" BackgroundColor="LightGray" />
-            <Button Grid.Row="2" Grid.Column="2" BackgroundColor="LightGray" />
+            <Button Text="{Binding Tiles[0].Player.Token, FallbackValue=''}" CommandParameter="0" Clicked="Tile_OnClicked" Grid.Row="0" Grid.Column="0" BackgroundColor="White"/>
+            <Button Text="{Binding Tiles[1].Player.Token, FallbackValue=''}" CommandParameter="1" Clicked="Tile_OnClicked" Grid.Row="0" Grid.Column="1" BackgroundColor="White"/>
+            <Button Text="{Binding Tiles[2].Player.Token, FallbackValue=''}" CommandParameter="2" Clicked="Tile_OnClicked" Grid.Row="0" Grid.Column="2" BackgroundColor="White"/>
+            <Button Text="{Binding Tiles[3].Player.Token, FallbackValue=''}" CommandParameter="3" Clicked="Tile_OnClicked" Grid.Row="1" Grid.Column="0" BackgroundColor="White"/>
+            <Button Text="{Binding Tiles[4].Player.Token, FallbackValue=''}" CommandParameter="4" Clicked="Tile_OnClicked" Grid.Row="1" Grid.Column="1" BackgroundColor="White"/>
+            <Button Text="{Binding Tiles[5].Player.Token, FallbackValue=''}" CommandParameter="5" Clicked="Tile_OnClicked" Grid.Row="1" Grid.Column="2" BackgroundColor="White"/>
+            <Button Text="{Binding Tiles[6].Player.Token, FallbackValue=''}" CommandParameter="6" Clicked="Tile_OnClicked" Grid.Row="2" Grid.Column="0" BackgroundColor="White"/>
+            <Button Text="{Binding Tiles[7].Player.Token, FallbackValue=''}" CommandParameter="7" Clicked="Tile_OnClicked" Grid.Row="2" Grid.Column="1" BackgroundColor="White"/>
+            <Button Text="{Binding Tiles[8].Player.Token, FallbackValue=''}" CommandParameter="8" Clicked="Tile_OnClicked" Grid.Row="2" Grid.Column="2" BackgroundColor="White"/>
         </Grid>
         
         <Button Text="New Game" IsVisible="{Binding GameFinished}"/>

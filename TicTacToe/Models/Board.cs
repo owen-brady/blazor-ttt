@@ -1,13 +1,15 @@
 #nullable enable
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace TicTacToe.Models
 {
-    public class Board
+    public class Board : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler? PropertyChanged;
         public int Id { get; set; }
-        public List<Tile> Tiles { get; set; }
+        public List<Tile>? Tiles { get; set; }
 
         public Board(int id, List<Tile>? tiles)
         {

@@ -1,10 +1,12 @@
+using System.ComponentModel;
 using System.Linq;
 
 #nullable enable
 namespace TicTacToe.Models
 {
-    public class Tile
+    public class Tile : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler? PropertyChanged;
         public int Id { get; set; }
         public int Column { get; set; }
         public int Row { get; set; }
