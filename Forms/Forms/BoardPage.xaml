@@ -4,15 +4,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Forms.BoardPage"
              BackgroundColor="White">
-    <StackLayout>
+    <StackLayout VerticalOptions="Center">
+        <Label Text="Winner: Player X" />
         <Grid
             x:Name="Board"
-            IsVisible="False"
-            RowDefinitions="100, 100, 100" 
-            ColumnDefinitions="100, 100, 100"
+            IsVisible="True"
             HorizontalOptions="Center"
             VerticalOptions="Center"
-            BackgroundColor="Black">
+            BackgroundColor="Black"
+            RowDefinitions="*, *, *"
+            ColumnDefinitions="*, *, *">
             <!-- Tiles -->
             <Button Grid.Row="0" Grid.Column="0" BackgroundColor="LightGray" />
             <Button Grid.Row="0" Grid.Column="1" BackgroundColor="LightGray" />
@@ -26,6 +27,6 @@
         </Grid>
         
         <!-- TODO: hide until game is over -->
-        <Button Text="New Game"/>
+        <Button Text="New Game" IsVisible="False"/>
     </StackLayout>
 </ContentPage>
