@@ -1,20 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TicTacToe.Models;
 using TicTacToe.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Forms
+namespace Forms.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BoardPage : ContentPage
     {
-        public GameViewModel GameViewModel { get; set; }
+        private GameViewModel GameViewModel { get; set; }
 
         public BoardPage(GameViewModel gameViewModel)
         {
@@ -59,6 +53,11 @@ namespace Forms
             var idParameter = (sender as Button)?.CommandParameter;
             var tileId = int.Parse(idParameter as string ?? "");
             GameViewModel.PlayGame(tileId);
+        }
+
+        private void NewGame_OnClicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync();
         }
     }
 }

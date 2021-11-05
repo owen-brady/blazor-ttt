@@ -14,7 +14,6 @@
         <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
         <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
         <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-        <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
         <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
         <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     </PropertyGroup>
@@ -66,7 +65,7 @@
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Forms\Forms.csproj">
-            <Project>{4F750BD2-78AB-4C93-AD7A-55BF00A15172}</Project>
+            <Project>{A60425CC-0A1A-4A5C-B300-CA122C6AC038}</Project>
             <Name>Forms</Name>
         </ProjectReference>
     </ItemGroup>
