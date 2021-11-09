@@ -26,15 +26,15 @@
             RowDefinitions="*, *, *"
             ColumnDefinitions="*, *, *">
             <!-- Tiles -->
-            <Button Text="{Binding Tiles[0].Player.Token, FallbackValue=''}" CommandParameter="0" Clicked="Tile_OnClicked" Grid.Row="0" Grid.Column="0" BackgroundColor="White"/>
-            <Button Text="{Binding Tiles[1].Player.Token, FallbackValue=''}" CommandParameter="1" Clicked="Tile_OnClicked" Grid.Row="0" Grid.Column="1" BackgroundColor="White"/>
-            <Button Text="{Binding Tiles[2].Player.Token, FallbackValue=''}" CommandParameter="2" Clicked="Tile_OnClicked" Grid.Row="0" Grid.Column="2" BackgroundColor="White"/>
-            <Button Text="{Binding Tiles[3].Player.Token, FallbackValue=''}" CommandParameter="3" Clicked="Tile_OnClicked" Grid.Row="1" Grid.Column="0" BackgroundColor="White"/>
-            <Button Text="{Binding Tiles[4].Player.Token, FallbackValue=''}" CommandParameter="4" Clicked="Tile_OnClicked" Grid.Row="1" Grid.Column="1" BackgroundColor="White"/>
-            <Button Text="{Binding Tiles[5].Player.Token, FallbackValue=''}" CommandParameter="5" Clicked="Tile_OnClicked" Grid.Row="1" Grid.Column="2" BackgroundColor="White"/>
-            <Button Text="{Binding Tiles[6].Player.Token, FallbackValue=''}" CommandParameter="6" Clicked="Tile_OnClicked" Grid.Row="2" Grid.Column="0" BackgroundColor="White"/>
-            <Button Text="{Binding Tiles[7].Player.Token, FallbackValue=''}" CommandParameter="7" Clicked="Tile_OnClicked" Grid.Row="2" Grid.Column="1" BackgroundColor="White"/>
-            <Button Text="{Binding Tiles[8].Player.Token, FallbackValue=''}" CommandParameter="8" Clicked="Tile_OnClicked" Grid.Row="2" Grid.Column="2" BackgroundColor="White"/>
+            <Button Text="{Binding Tiles[0].Player.Token, FallbackValue=''}" CommandParameter="0" Clicked="Tile_OnClicked" Grid.Row="0" Grid.Column="0" BackgroundColor="White" CornerRadius="0"/>
+            <Button Text="{Binding Tiles[1].Player.Token, FallbackValue=''}" CommandParameter="1" Clicked="Tile_OnClicked" Grid.Row="0" Grid.Column="1" BackgroundColor="White" CornerRadius="0"/>
+            <Button Text="{Binding Tiles[2].Player.Token, FallbackValue=''}" CommandParameter="2" Clicked="Tile_OnClicked" Grid.Row="0" Grid.Column="2" BackgroundColor="White" CornerRadius="0"/>
+            <Button Text="{Binding Tiles[3].Player.Token, FallbackValue=''}" CommandParameter="3" Clicked="Tile_OnClicked" Grid.Row="1" Grid.Column="0" BackgroundColor="White" CornerRadius="0"/>
+            <Button Text="{Binding Tiles[4].Player.Token, FallbackValue=''}" CommandParameter="4" Clicked="Tile_OnClicked" Grid.Row="1" Grid.Column="1" BackgroundColor="White" CornerRadius="0"/>
+            <Button Text="{Binding Tiles[5].Player.Token, FallbackValue=''}" CommandParameter="5" Clicked="Tile_OnClicked" Grid.Row="1" Grid.Column="2" BackgroundColor="White" CornerRadius="0"/>
+            <Button Text="{Binding Tiles[6].Player.Token, FallbackValue=''}" CommandParameter="6" Clicked="Tile_OnClicked" Grid.Row="2" Grid.Column="0" BackgroundColor="White" CornerRadius="0"/>
+            <Button Text="{Binding Tiles[7].Player.Token, FallbackValue=''}" CommandParameter="7" Clicked="Tile_OnClicked" Grid.Row="2" Grid.Column="1" BackgroundColor="White" CornerRadius="0"/>
+            <Button Text="{Binding Tiles[8].Player.Token, FallbackValue=''}" CommandParameter="8" Clicked="Tile_OnClicked" Grid.Row="2" Grid.Column="2" BackgroundColor="White" CornerRadius="0"/>
         </Grid>
         
         <Button Text="New Game" IsVisible="{Binding GameFinished}" Clicked="NewGame_OnClicked" TextTransform="None"/>
