@@ -58,6 +58,7 @@ namespace TicTacToe.Models
             if (isWinner)
             {
                 GameStatus = Status.Winner;
+                return; // so simple for so much pain
             }
             
             // Check for tie

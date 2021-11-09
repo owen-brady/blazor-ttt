@@ -189,5 +189,38 @@ namespace TicTacToe.Tests.Models.Test
             
             Assert.Equal(Player.PlayerType.Robot, gameViewModel.Player2.Type);
         }
+        
+        // NOTE: this is a perfect example of testing behavior
+        [Fact]
+        public void PlayRound_TieGame_ExpectCorrectGameStatus()
+        {
+            _game.PlayRound(_player1, 0, 0);
+            _game.PlayRound(_player2, 1, 1);
+            _game.PlayRound(_player1, 2, 2);
+            _game.PlayRound(_player2, 3, 4);
+            _game.PlayRound(_player1, 4, 3);
+            _game.PlayRound(_player2, 5, 5);
+            _game.PlayRound(_player1, 6, 7);
+            _game.PlayRound(_player2, 7, 6);
+            _game.PlayRound(_player1, 8, 8);
+
+            _game.GameStatus.Should().Be(Game.Status.Tie);
+        }
+
+        [Fact]
+        public void PlayRound_FinalBoardMove_ExpectCorrectGameStatus()
+        {
+            _game.PlayRound(_player1, 0, 0);
+            _game.PlayRound(_player2, 1, 1);
+            _game.PlayRound(_player1, 2, 2);
+            _game.PlayRound(_player2, 3, 4);
+            _game.PlayRound(_player1, 4, 3);
+            _game.PlayRound(_player2, 5, 5);
+            _game.PlayRound(_player1, 6, 7);
+            _game.PlayRound(_player2, 7, 8);
+            _game.PlayRound(_player1, 8, 6);
+
+            _game.GameStatus.Should().Be(Game.Status.Winner);
+        }
     }
 }
