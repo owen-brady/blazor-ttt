@@ -9,9 +9,9 @@ namespace TicTacToe.Models
     public class Game : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
-        public Player Player1 { get; set; }
-        public Player Player2 { get; set; }
-        public Board Board { get; set; }
+        public Player Player1 { get; }
+        public Player Player2 { get; }
+        public Board Board { get; }
         private readonly IPlayerInput _playerInput;
         
         // Manage State of Game
@@ -19,6 +19,8 @@ namespace TicTacToe.Models
         public int RoundNumber { get; set; } = 1;
         public Status GameStatus { get; set; } = Status.Playing;
         public Player ActivePlayer => IsPlayerOneTurn ? Player1 : Player2;
+        public bool IsTie { get; set; } = false;
+        public bool IsWinner { get; set; } = false;
 
         public Game(Player player1, Player player2, IPlayerInput playerInput, Board? board = null)
         {

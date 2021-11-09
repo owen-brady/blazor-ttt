@@ -11,31 +11,25 @@ namespace TicTacToe.ViewModels
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         public readonly Game Game;
-        public readonly Player Player1;
-        public readonly Player Player2;
-        public Player ActivePlayer { get; private set; }
+        public Player Player1 => Game.Player1;
+        public Player Player2 => Game.Player2;
+        public Player ActivePlayer => Game.ActivePlayer;
         public Player? Winner { get; private set; }
         public bool IsTie { get; set; }
         public bool HasWinner { get; set; }
         public bool GameFinished => HasWinner || IsTie;
-        public List<Tile>? Tiles { get; private set; }
+        public List<Tile>? Tiles => Game.Board.Tiles;
 
         public GameViewModel(Player player1, Player player2, Game? game = null)
         {
-            // TODO: add ability to input custom player data
-            Player1 = player1;
-            Player2 = player2;
-
             // TODO: initialize new game only if game session is null
-            Game = Game.StartNewGame(Player1, Player2);
-            ActivePlayer = player1;
+            Game = Game.StartNewGame(player1, player2);
         }
 
         public void PlayGame(int tileId)
         {
             if (HasWinner || IsTie)
             {
-                Tiles = Game.Board.Tiles;
                 return;
             }
             
@@ -62,9 +56,6 @@ namespace TicTacToe.ViewModels
             {
                 PlayGame(MakeRobotMove());
             }
-
-            ActivePlayer = Game.ActivePlayer;
-            Tiles = Game.Board.Tiles;
         }
 
         private readonly RobotMove _robotMove = new RobotMove();
