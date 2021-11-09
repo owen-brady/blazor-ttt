@@ -42,7 +42,7 @@ namespace TicTacToe.Tests.ViewModels.Test
             
             var gameViewModel = new GameViewModel(_player1, _player2Robot);
             
-            gameViewModel.PlayGame(0);
+            gameViewModel.Game.PlayGame(0);
 
             var playedTiles = gameViewModel.Game.Board.Tiles.Count(tile => tile.Player != null);
 

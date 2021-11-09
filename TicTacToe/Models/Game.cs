@@ -1,6 +1,8 @@
 #nullable enable
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using PropertyChanged;
 using TicTacToe.Services;
 using TicTacToe.ViewModels;
 
@@ -12,16 +14,19 @@ namespace TicTacToe.Models
         public Player Player1 { get; }
         public Player Player2 { get; }
         public Board Board { get; }
-        private readonly IPlayerInput _playerInput;
-        
-        // Manage State of Game
         public bool IsPlayerOneTurn { get; set; } = true;
         public int RoundNumber { get; set; } = 1;
         public Status GameStatus { get; set; } = Status.Playing;
         public Player ActivePlayer => IsPlayerOneTurn ? Player1 : Player2;
-        public bool IsTie { get; set; } = false;
-        public bool IsWinner { get; set; } = false;
-
+        public Player? Winner { get; private set; }
+        public bool IsTie { get; private set; }
+        public bool HasWinner { get; private set; }
+        
+        [DependsOn(nameof(HasWinner), nameof(IsTie))]
+        public bool GameFinished => HasWinner || IsTie;
+        
+        private readonly IPlayerInput _playerInput;
+        
         public Game(Player player1, Player player2, IPlayerInput playerInput, Board? board = null)
         {
             Player1 = player1;
@@ -70,6 +75,38 @@ namespace TicTacToe.Models
                 GameStatus = Status.Tie;
             }
         }
+        
+        public void PlayGame(int tileId)
+        {
+            if (HasWinner || IsTie)
+            {
+                return;
+            }
+            
+            PlayRound(IsPlayerOneTurn ? Player1 : Player2, RoundNumber, tileId);
+            RoundNumber++;
+
+            switch (GameStatus)
+            {
+                case Status.Playing:
+                    IsPlayerOneTurn = !IsPlayerOneTurn; // only change when another round will be played
+                    break;
+                case Status.Winner:
+                    Winner = IsPlayerOneTurn ? Player1 : Player2;
+                    HasWinner = true;
+                    break;
+                case Status.Tie:
+                    IsTie = true;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            if (ActivePlayer.Type == Player.PlayerType.Robot)
+            {
+                PlayGame(MakeRobotMove());
+            }
+        }
 
         public static GameViewModel PlayHuman()
         {
@@ -89,6 +126,16 @@ namespace TicTacToe.Models
             GameViewModel gameViewModel = new GameViewModel(player1, player2);
 
             return gameViewModel;
+        }
+        
+        private readonly RobotMove _robotMove = new RobotMove();
+        private int MakeRobotMove()
+        {
+            var player = ActivePlayer;
+            var opponent = player == Player1 ? Player2 : Player1;
+            var tileId = _robotMove.SelectTile(Board, player, opponent);
+
+            return tileId;
         }
     }
 }

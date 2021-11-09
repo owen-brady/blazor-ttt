@@ -52,7 +52,7 @@ namespace Forms.Views
         {
             var idParameter = (sender as Button)?.CommandParameter;
             var tileId = int.Parse(idParameter as string ?? "");
-            GameViewModel.PlayGame(tileId);
+            GameViewModel.Game.PlayGame(tileId);
         }
 
         private void NewGame_OnClicked(object sender, EventArgs e)
