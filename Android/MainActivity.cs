@@ -60,7 +60,7 @@ namespace Android
                 var i1 = i;
                 tiles[i1].Click += (sender, args) =>
                 {
-                    _gameViewModel.PlayGame(i1);
+                    _gameViewModel.Game.PlayGame(i1);
                     RefreshView(tiles);
                 };
             }

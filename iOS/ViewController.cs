@@ -37,7 +37,7 @@ namespace iOS
                 var i1 = i;
                 button.TouchUpInside += (object sender, EventArgs e) =>
                 {
-                    _gameViewModel.PlayGame(i1);
+                    _gameViewModel.Game.PlayGame(i1);
                     RefreshView();
                 };
             }
